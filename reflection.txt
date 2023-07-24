@@ -1,0 +1,7 @@
+The general idea of depth-first search and breadth-first search was easy to grasp
+but I ran into some problems while coding that are specifically relating to the pacman
+game. For example, when I was coding by myself, I didn't know that I should push a tuple of
+(state, move, cost) to the stack/queue rather than just the state. But the biggest issue I ran
+into, that none of us understood, was that the "actions" list works only if it is appended
+while pushing to the frontier. When I did actions = actions + [action] before pushing actions to 
+the frontier, the code does not work and the screen would blink and then disappear. 
