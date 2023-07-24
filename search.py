@@ -85,13 +85,37 @@ def depthFirstSearch(problem: SearchProblem):
     print("Start:", problem.getStartState())
     print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+
+    frontier = util.Stack()
+    return general_search(problem, frontier)
+
+    # util.raiseNotDefined()
 
 def breadthFirstSearch(problem: SearchProblem):
+    frontier = util.Queue()
+    return general_search(problem, frontier)
+
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    # util.raiseNotDefined()
+
+def general_search(problem, frontier):
+    # initiate visited as an array list
+    # actions = []
+    visited = []
+    goal_found = False
+    frontier.push((problem.getStartState(), [], 0))
+    while goal_found == False:
+        current_state, actions, cost = frontier.pop()
+        if problem.isGoalState(current_state):
+            goal_found = True
+            return actions
+        else:
+            visited.append(current_state)
+            for child, action, cost in problem.getSuccessors(current_state):
+                if (child not in visited):
+                    frontier.push((child, actions + [action], cost))
+                
 
 def uniformCostSearch(problem: SearchProblem):
     """Search the node of least total cost first."""
